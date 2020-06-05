@@ -1,4 +1,4 @@
-package test;
+package hypatia;
 
 import java.util.Random;
 
@@ -13,11 +13,11 @@ public class Physics {
     public static void step(Cell cell, int stepSpeed){
         boolean atEdgeOverride = true;
 
-        boolean rightStep = true;
-        boolean upStep = true;
+        boolean rightStep;
+        boolean upStep;
 
-        int dX = 0;
-        int dY = 0;
+        int dX;
+        int dY;
 
         //Edge detection
         if (cell.xPos + cell.radius >= Main.xSize)
@@ -96,11 +96,11 @@ public class Physics {
     }
 
     public static void stepp(Morphogen m, int stepSpeed){
-        boolean rightStep = true;
-        boolean upStep = true;
+        boolean rightStep;
+        boolean upStep;
 
-        int dX = 0;
-        int dY = 0;
+        int dX;
+        int dY;
 
         //Edge detection
         if (m.xPos + m.radius >= Main.xSize)

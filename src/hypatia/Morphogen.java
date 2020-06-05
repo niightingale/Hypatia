@@ -1,8 +1,8 @@
-package test;
+package hypatia;
 
 import java.awt.*;
 
-import static test.Main.pen;
+import static hypatia.Main.pen;
 
 public class Morphogen {
     //Particle Properties

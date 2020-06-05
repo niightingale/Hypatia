@@ -1,4 +1,4 @@
-package test;
+package hypatia;
 import nano.*;
 import nano.Canvas;
 
