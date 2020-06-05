@@ -19,39 +19,28 @@ public class Main {
     static ArrayList<Cell> cellQue = new ArrayList<Cell>();
 
     static ArrayList<Morphogen> morphs = new ArrayList<Morphogen>();
+    static ArrayList<Morphogen> morphQue = new ArrayList<>();
 
     public static void main(String[] args) {
         for(int j = 1; j<2; j++){
             for(int i = 1; i<9; i++){
-                Cell newCell = new Cell(50*j,50*i, 15, true);
+                Cell newCell = new Cell(50*j,50*i, 15, true, true);
                 cells.add(newCell);
             }
         }
         Scanner sc = new Scanner(System.in);
         System.out.println("Press enter to continue.");
         sc.nextLine();
-/*
-        Cell firstMan = new Cell(50,250,20);
-        Cell ndman = new Cell(50,180,20);
-        Cell ndman2 = new Cell(50,320,20);
-        Cell blockr = new Cell(200,250,20);
-        blockr.fertile = true;
-        cells.add(firstMan);
-        cells.add(ndman);
-        cells.add(ndman2);
-        cells.add(blockr);*/
-
-        //Cell fistMan = new Cell(500,250, 20);
-        //Cell secMan = new Cell(500, 210, 100);
-        //cells.add(fistMan);
-        //cells.add(secMan);
 
         //Execution order of Method Calls
 	    while(true){
+	        //COUNTERS
 	        call++;
 	        System.out.println("Frame: " + call);
             System.out.println("Mpg: " + morphs.size());
 	        frustrum.clear();
+
+	        //EXECUTION
             for(Cell cell:cells){
                cell.update();
             }
@@ -62,12 +51,15 @@ public class Main {
             for(Morphogen m:morphs){
                 m.lateUpate();
             }
+            morphs.removeAll(morphQue);
             for(Cell cell:cells){
                 cell.frameUpdate();
             }
             for(Morphogen m:morphs){
                 m.frameUpdate();
             }
+
+
             frustrum.update();
             frustrum.pause(100);
             cellQue.clear();

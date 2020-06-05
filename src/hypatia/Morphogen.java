@@ -11,6 +11,9 @@ public class Morphogen {
     int radius;
     Color color = Color.green;
 
+    //Timer
+    int ctr = 0;
+
     public Morphogen(Cell cell){
         int xy[] = Physics.polarng(1, cell.radius);
         xPos = xy[0] + cell.xPos;
@@ -19,9 +22,13 @@ public class Morphogen {
 
         Main.morphs.add(this);
     }
-
     public void lateUpate(){
         Physics.stepp(this, 20);
+
+        ctr++;
+        if(ctr>100){
+            Main.morphQue.add(this);
+        }
     }
 
     public void frameUpdate(){

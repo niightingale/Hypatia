@@ -14,6 +14,8 @@ public class Cell {
 
     Color color = Color.white;
 
+    boolean stemC = true;
+
     //Movement
     int dx;
     int dy;
@@ -27,11 +29,12 @@ public class Cell {
 
     Pen pen = new Pen(Main.frustrum);
 
-    public Cell(int xIn, int yIn, int rIn, boolean producer){
+    public Cell(int xIn, int yIn, int rIn, boolean producer, boolean stemC){
         xPos = xIn;
         yPos = yIn;
         radius = rIn;
         this.producer = producer;
+        this.stemC = stemC;
     }
 
     public void update(){
@@ -43,19 +46,8 @@ public class Cell {
 
     public void lateUpdate(){
         Physics.step(this, 1);
-
-        int cnt = 0;
-        for(Morphogen m:Main.morphs){
-            if(Math.sqrt(Math.pow(xPos - m.xPos, 2) + Math.pow(yPos - m.yPos, 2)) <= 25){
-                cnt++;
-            }
-        }
-        if(cnt > 5 && color == color.white)
-            color = color.blue;
-        if(cnt > 10 && color == color.blue)
-            color = color.pink;
-        if(cnt > 20 && color == color.pink)
-            color = color.red;
+        if(!stemC)
+            changeColor();
     }
 
     public void frameUpdate(){
@@ -89,7 +81,7 @@ public class Cell {
                 xF = xy[0] + xPos;
                 yF = xy[1] + yPos;
 
-                protoCell = new Cell(xF, yF, radF, false);
+                protoCell = new Cell(xF, yF, radF, false, false);
 
                 ArrayList<Cell> cellsTot = new ArrayList<Cell>();
                 cellsTot.addAll(Main.cells);
@@ -120,6 +112,21 @@ public class Cell {
 
     public void produce(){
         Morphogen morphogen = new Morphogen(this);
+    }
+
+    public void changeColor(){
+        int cnt = 0;
+        for(Morphogen m:Main.morphs){
+            if(Math.sqrt(Math.pow(xPos - m.xPos, 2) + Math.pow(yPos - m.yPos, 2)) <= 25){
+                cnt++;
+            }
+        }
+        if(cnt > 5 && color == color.white)
+            color = color.blue;
+        if(cnt > 10 && color == color.blue)
+            color = color.pink;
+        if(cnt > 20 && color == color.pink)
+            color = color.red;
     }
 
     public double getDistance(Cell cell1, Cell cell2){
