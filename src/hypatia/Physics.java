@@ -48,7 +48,7 @@ public class Physics {
         else
             dY = -rng.nextInt(dyT)*stepSpeed - 1;
 
-        //Check particle collision
+        //Check particle collision - CONTACT INHIBITION
         boolean hasMade = false;
 
         if(!atEdgeOverride){

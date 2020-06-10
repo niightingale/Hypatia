@@ -2,6 +2,7 @@ package hypatia;
 import nano.*;
 import nano.Canvas;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,7 +11,7 @@ public class Main {
     static int call = 0;
 
     static int xSize = 1000;
-    static int ySize = 500;
+    static int ySize = 600;
 
     static Canvas frustrum = new Canvas(xSize, ySize,0,0);
     static Pen pen = new Pen(frustrum);
@@ -19,30 +20,31 @@ public class Main {
     static ArrayList<Cell> cellQue = new ArrayList<Cell>();
 
     static ArrayList<Morphogen> morphs = new ArrayList<Morphogen>();
-    static ArrayList<Morphogen> morphQue = new ArrayList<>();
+    static ArrayList<Morphogen> morphDelQue = new ArrayList<>();
 
     public static void main(String[] args) {
-        for(int j = 1; j<2; j++){
-            for(int i = 1; i<9; i++){
-                Cell newCell = new Cell(50*j,50*i, 15, true, true);
-                cells.add(newCell);
-            }
-        }
+        Program();
+    }
+    public static void Program(){
+
+        char[] input = query();
+        preWarm(input);
+
         Scanner sc = new Scanner(System.in);
-        System.out.println("Press enter to continue.");
+        System.out.println("Press any button to start the simulation.");
         sc.nextLine();
 
         //Execution order of Method Calls
-	    while(true){
-	        //COUNTERS
-	        call++;
-	        System.out.println("Frame: " + call);
+        while(true){
+            //COUNTERS
+            call++;
+            System.out.println("Frame: " + call);
             System.out.println("Mpg: " + morphs.size());
-	        frustrum.clear();
+            frustrum.clear();
 
-	        //EXECUTION
+            //EXECUTION
             for(Cell cell:cells){
-               cell.update();
+                cell.update();
             }
             cells.addAll(cellQue);
             for(Cell cell:cells){
@@ -51,7 +53,7 @@ public class Main {
             for(Morphogen m:morphs){
                 m.lateUpate();
             }
-            morphs.removeAll(morphQue);
+            morphs.removeAll(morphDelQue);
             for(Cell cell:cells){
                 cell.frameUpdate();
             }
@@ -59,10 +61,85 @@ public class Main {
                 m.frameUpdate();
             }
 
-
             frustrum.update();
             frustrum.pause(100);
             cellQue.clear();
+        }
+    }
+
+    //Queries the user
+    public static char[] query(){
+        char[] orient= new char[4];
+        System.out.println("\nPlease denote the sides at which you wish the cells to start using " +
+                "following structure in binary operators:\n LRTB (left, right top bottom) \n" +
+                "This means that 1010 means 'left' and 'top'.");
+        Scanner sc = new Scanner(System.in);
+        String fill = sc.nextLine();
+        //Test for too many digits or digits that are not 0 or 1.
+        try{
+            if(fill.length() != 4)
+                throw new Exception();
+            orient = fill.toCharArray();
+            for(char ch:orient){
+                if(ch < 48 || ch > 49)
+                    throw new Exception();
+            }
+        }
+        catch(Exception e){
+            System.out.println("The digits were invalid, the program will restart.");
+            Program();
+        }
+        System.out.println("You entered: " + fill);
+        return orient;
+    }
+
+    //Spawns the cells
+    public static void preWarm(char[] setting){
+        int offSet = 40;
+
+        int xSpawnInit = 25;
+        int ySpawnInit = 25;
+
+        int xSpawn = xSpawnInit;
+        int ySpawn = ySpawnInit;
+
+        //LEFT SPAWN
+        if(setting[0] == 49){
+            while(ySpawn <= ySize - offSet){
+                Cell newCell = new Cell(xSpawn, ySpawn, 15, true);
+                cells.add(newCell);
+                ySpawn += offSet;
+            }
+        }
+        //RIGHT SPAWN
+        if(setting[1] ==49){
+            xSpawn = xSize - xSpawnInit;
+            ySpawn = ySpawnInit;
+            while(ySpawn <= ySize - offSet){
+                Cell newCell = new Cell(xSpawn, ySpawn, 15, true);
+                cells.add(newCell);
+                ySpawn += offSet;
+            }
+        }
+        //TOP SPAWN
+        if(setting[2] == 49){
+            xSpawn = xSpawnInit + offSet;
+            ySpawn = ySize - ySpawnInit;
+            while(xSpawn <= xSize - offSet){
+                Cell newCell = new Cell(xSpawn, ySpawn, 15, true);
+                cells.add(newCell);
+                xSpawn += offSet;
+            }
+        }
+        //BOTTOM SPAWN
+        if(setting[3] == 49){
+            xSpawn = xSpawnInit + offSet;
+            ySpawn = ySpawnInit;
+            while(xSpawn <= xSize - offSet){
+                Cell newCell = new Cell(xSpawn, ySpawn, 15, true);
+                cells.add(newCell);
+                xSpawn += offSet;
+            }
         }
     }
 }

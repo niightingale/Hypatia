@@ -14,8 +14,6 @@ public class Cell {
 
     Color color = Color.white;
 
-    boolean stemC = true;
-
     //Movement
     int dx;
     int dy;
@@ -25,28 +23,27 @@ public class Cell {
     int stretch = 5;
 
     boolean fertile = true;
-    boolean producer = false;
+    boolean stemCell = false;
 
     Pen pen = new Pen(Main.frustrum);
 
-    public Cell(int xIn, int yIn, int rIn, boolean producer, boolean stemC){
+    public Cell(int xIn, int yIn, int rIn, boolean stemCell){
         xPos = xIn;
         yPos = yIn;
         radius = rIn;
-        this.producer = producer;
-        this.stemC = stemC;
+        this.stemCell = stemCell;
     }
 
     public void update(){
         if(fertile)
-            duplicate();
-        if(producer)
+            duplicate(false);
+        if(stemCell)
             produce();
     }
 
     public void lateUpdate(){
         Physics.step(this, 1);
-        if(!stemC)
+        if(!stemCell)
             changeColor();
     }
 
@@ -54,7 +51,7 @@ public class Cell {
         pen.drawCircle(xPos, yPos, radius, color, false);
     }
 
-    public void duplicate(){
+    public void duplicate(boolean isStem){
         Random rng = new Random();
         int xF;
         int yF;
@@ -81,7 +78,12 @@ public class Cell {
                 xF = xy[0] + xPos;
                 yF = xy[1] + yPos;
 
-                protoCell = new Cell(xF, yF, radF, false, false);
+                if(isStem){
+                    protoCell = new Cell(xF, yF, radF, true);
+                }
+                else{
+                    protoCell = new Cell(xF, yF, radF, false);
+                }
 
                 ArrayList<Cell> cellsTot = new ArrayList<Cell>();
                 cellsTot.addAll(Main.cells);

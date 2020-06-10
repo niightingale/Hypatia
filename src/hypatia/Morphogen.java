@@ -1,6 +1,10 @@
 package hypatia;
 
+import org.w3c.dom.ls.LSInput;
+import org.w3c.dom.ls.LSOutput;
+
 import java.awt.*;
+import java.util.Random;
 
 import static hypatia.Main.pen;
 
@@ -11,8 +15,8 @@ public class Morphogen {
     int radius;
     Color color = Color.green;
 
-    //Timer
-    int ctr = 0;
+    //Decay
+    double decayChance = 0.01;
 
     public Morphogen(Cell cell){
         int xy[] = Physics.polarng(1, cell.radius);
@@ -25,9 +29,10 @@ public class Morphogen {
     public void lateUpate(){
         Physics.stepp(this, 20);
 
-        ctr++;
-        if(ctr>100){
-            Main.morphQue.add(this);
+        Random rng = new Random();
+        double roll = rng.nextDouble();
+        if(roll <= decayChance){
+            Main.morphDelQue.add(this);
         }
     }
 
