@@ -67,10 +67,11 @@ public class Main {
         }
     }
 
-    //Queries the user
+    //Queries the user for spawning input
     public static char[] query(){
         char[] orient= new char[4];
-        System.out.println("\nPlease denote the sides at which you wish the cells to start using " +
+        System.out.println("\nWelcome," +
+                "\nPlease denote the sides at which you wish the cells to start using " +
                 "following structure in binary operators:\n LRTB (left, right top bottom) \n" +
                 "This means that 1010 means 'left' and 'top'.");
         Scanner sc = new Scanner(System.in);

@@ -123,11 +123,11 @@ public class Cell {
                 cnt++;
             }
         }
-        if(cnt > 5 && color == color.white)
+        if(cnt > 2 && color == color.white)
             color = color.blue;
-        if(cnt > 10 && color == color.blue)
+        if(cnt > 5 && color == color.blue)
             color = color.pink;
-        if(cnt > 20 && color == color.pink)
+        if(cnt > 10 && color == color.pink)
             color = color.red;
     }
 

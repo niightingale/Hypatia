@@ -40,7 +40,7 @@ public class Physics {
 
         //Generation of random step values
         if(rightStep)
-            dX = rng.nextInt(dxT)*stepSpeed + 1 ;
+            dX = rng.nextInt(dxT)*stepSpeed + 1;
         else
             dX = -rng.nextInt(dxT)*stepSpeed - 1;
         if(upStep)
