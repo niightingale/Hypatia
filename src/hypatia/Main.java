@@ -6,7 +6,16 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import static javafx.application.Application.launch;
+
+public class Main extends Application {
 
     static int call = 0;
 
@@ -23,16 +32,24 @@ public class Main {
     static ArrayList<Morphogen> morphDelQue = new ArrayList<>();
 
     public static void main(String[] args) {
-        Program();
+        launch(args);
     }
-    public static void Program(){
 
-        char[] input = query();
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("gui.fxml"));
+        Scene home = new Scene(root);
+        primaryStage.setTitle("Hypatia");
+        primaryStage.setX(xSize+10);
+        primaryStage.setY(0);
+        primaryStage.setScene(home);
+        primaryStage.setResizable(false);
+        primaryStage.show();
+    }
+
+    public static void Program(char[] input){
+
         preWarm(input);
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Press any button to start the simulation.");
-        sc.nextLine();
 
         //Execution order of Method Calls
         while(true){
@@ -67,7 +84,7 @@ public class Main {
         }
     }
 
-    //Queries the user for spawning input
+    //Queries the user for spawning input //DEPRECATED
     public static char[] query(){
         char[] orient= new char[4];
         System.out.println("\nWelcome," +
@@ -88,7 +105,7 @@ public class Main {
         }
         catch(Exception e){
             System.out.println("The digits were invalid, the program will restart.");
-            Program();
+            //Program();
         }
         System.out.println("You entered: " + fill);
         return orient;
