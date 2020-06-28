@@ -2,29 +2,49 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="292.0" prefWidth="222.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hypatia.guiControl">
+<AnchorPane prefHeight="383.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hypatia.guiControl">
    <children>
       <Text layoutX="29.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Setup">
          <font>
             <Font size="39.0" />
          </font>
       </Text>
-      <CheckBox fx:id="left" layoutX="29.0" layoutY="165.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="73.0" text="Left" />
-      <Text layoutX="29.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spawning">
+      <CheckBox fx:id="left" layoutX="31.0" layoutY="293.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="73.0" text="Left" />
+      <Text layoutX="31.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spawning">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="29.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick the borders which are to act as the spawners." wrappingWidth="182.458984375" />
-      <CheckBox fx:id="right" layoutX="29.0" layoutY="191.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="73.0" text="Right" />
-      <CheckBox fx:id="top" layoutX="102.0" layoutY="165.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="73.0" text="Top" />
-      <CheckBox fx:id="bottom" layoutX="102.0" layoutY="191.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="73.0" text="Bottom" />
-      <Line endX="-7.5" layoutX="21.0" layoutY="82.0" startX="-7.5" startY="129.0" strokeWidth="2.0" />
-      <Button layoutX="61.0" layoutY="250.0" mnemonicParsing="false" onAction="#pressStart" text="Start Simulation" />
+      <Text layoutX="31.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick the borders which are to act as the spawners." wrappingWidth="182.458984375" />
+      <CheckBox fx:id="right" layoutX="31.0" layoutY="319.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="73.0" text="Right" />
+      <CheckBox fx:id="top" layoutX="104.0" layoutY="293.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="73.0" text="Top" />
+      <CheckBox fx:id="bottom" layoutX="104.0" layoutY="319.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="73.0" text="Bottom" />
+      <Line endX="-7.5" layoutX="23.0" layoutY="210.0" startX="-7.5" startY="129.0" strokeWidth="2.0" />
+      <Button layoutX="214.0" layoutY="337.0" mnemonicParsing="false" onAction="#pressStart" text="Start Simulation" />
+      <Text layoutX="276.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cell Injection">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="276.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill x and y coordinates separated by a comma:" wrappingWidth="182.458984375" />
+      <Line endX="-7.5" layoutX="273.0" layoutY="81.0" startX="-7.5" startY="242.0" strokeWidth="2.0" />
+      <Text layoutX="276.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="200, 300 means at x=200, y = 300" wrappingWidth="182.458984375" />
+      <TextField fx:id="cellDox" layoutX="276.0" layoutY="187.0" prefHeight="25.0" prefWidth="182.0" promptText="eg. 25, 55, 44, 250" />
+      <Text layoutX="276.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Additional cells are added by just repeating this numbering system." wrappingWidth="182.458984375" />
+      <Text layoutX="276.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cells that have coordinates which are not inside the window will not spawn." wrappingWidth="182.458984375" />
+      <Text layoutX="29.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Window">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="29.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill the height and width of the window." wrappingWidth="182.458984375" />
+      <TextField fx:id="resBox" layoutX="29.0" layoutY="161.0" prefHeight="25.0" prefWidth="182.0" promptText="eg. 1000, 500" />
+      <Line endX="-7.5" layoutX="23.0" layoutY="72.0" startX="-7.5" startY="129.0" strokeWidth="2.0" />
    </children>
 </AnchorPane>

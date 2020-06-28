@@ -12,7 +12,7 @@ public class Cell {
     int yPos;
     int radius;
 
-    Color color = Color.white;
+    Color color = Color.pink;
 
     //Movement
     int dx;
@@ -32,6 +32,9 @@ public class Cell {
         yPos = yIn;
         radius = rIn;
         this.stemCell = stemCell;
+
+        if(stemCell)
+            color = color.yellow;
     }
 
     public void update(){
@@ -123,11 +126,11 @@ public class Cell {
                 cnt++;
             }
         }
-        if(cnt > 2 && color == color.white)
+        if(cnt > 2 && color == color.pink)
             color = color.blue;
         if(cnt > 5 && color == color.blue)
-            color = color.pink;
-        if(cnt > 10 && color == color.pink)
+            color = color.white;
+        if(cnt > 10 && color == color.white)
             color = color.red;
     }
 

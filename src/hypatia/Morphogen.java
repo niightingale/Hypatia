@@ -1,8 +1,5 @@
 package hypatia;
 
-import org.w3c.dom.ls.LSInput;
-import org.w3c.dom.ls.LSOutput;
-
 import java.awt.*;
 import java.util.Random;
 
@@ -27,7 +24,7 @@ public class Morphogen {
         Main.morphs.add(this);
     }
     public void lateUpate(){
-        Physics.stepp(this, 20);
+        Physics.morphStep(this, 20);
 
         Random rng = new Random();
         double roll = rng.nextDouble();

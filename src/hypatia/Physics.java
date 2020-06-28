@@ -95,7 +95,7 @@ public class Physics {
         return xy;
     }
 
-    public static void stepp(Morphogen m, int stepSpeed){
+    public static void morphStep(Morphogen m, int stepSpeed){
         boolean rightStep;
         boolean upStep;
 
@@ -132,5 +132,7 @@ public class Physics {
         m.xPos += dX;
         m.yPos += dY;
     }
+
+
 
 }

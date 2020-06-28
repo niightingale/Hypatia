@@ -16,14 +16,14 @@ import javafx.stage.StageStyle;
 import static javafx.application.Application.launch;
 
 public class Main extends Application {
-
     static int call = 0;
+    static int simSpeed = 50;
 
     static int xSize = 1000;
     static int ySize = 600;
 
-    static Canvas frustrum = new Canvas(xSize, ySize,0,0);
-    static Pen pen = new Pen(frustrum);
+    static Canvas frustrum;
+    static Pen pen;
 
     static ArrayList<Cell> cells = new ArrayList<Cell>();
     static ArrayList<Cell> cellQue = new ArrayList<Cell>();
@@ -79,8 +79,9 @@ public class Main extends Application {
             }
 
             frustrum.update();
-            frustrum.pause(100);
+            frustrum.pause(simSpeed);
             cellQue.clear();
+            morphDelQue.clear();
         }
     }
 
@@ -159,6 +160,12 @@ public class Main extends Application {
                 xSpawn += offSet;
             }
         }
+    }
+    public static void changeWindow(int x, int y){
+        xSize = x;
+        ySize = y;
+        frustrum = new Canvas(xSize, ySize, 0,0 );
+        pen = new Pen(frustrum);
     }
 }
 /*NOTES GENERAL
