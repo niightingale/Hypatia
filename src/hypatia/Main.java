@@ -17,7 +17,7 @@ import static javafx.application.Application.launch;
 
 public class Main extends Application {
     static int call = 0;
-    static int simSpeed = 50;
+    static int simSpeed = 100;
 
     static int xSize = 1000;
     static int ySize = 600;

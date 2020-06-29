@@ -42,7 +42,7 @@ public class guiControl {
 
             ArrayList<Cell> injectCells = new ArrayList<>();
 
-            for(int i =0; i<cellCoords.size()-1; i++){
+            for(int i =0; i<cellCoords.size()-1; i+=2){
                 Cell iCell = new Cell(cellCoords.get(i), cellCoords.get(i+1), 15, true);
                 injectCells.add(iCell);
             }
